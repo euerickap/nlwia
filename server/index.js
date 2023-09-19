@@ -18,6 +18,7 @@ app.get("/summary/:id", async (request, response) => {
 
     return response.json({ result })
   } catch (error) {
+    console.log("error")
     return response.json({ error })
   }
 })
@@ -27,6 +28,7 @@ app.post("/summary", async (request, response) => {
     const result = await summarize(request.body.text)
     return response.json({ result })
   } catch (error) {
+    console.log("error")
     return response.json({ error })
   }
 })

@@ -15,7 +15,7 @@ export const convert = () =>
       .input(filePath)
       .audioFrequency(16000)
       .audioChannels(1)
-      .format(wav)
+      .format("wav")
       .on("end", () => {
         const file = fs.readFileSync(outputPath)
         const fileDecoded = wav.decode(file)
@@ -23,11 +23,13 @@ export const convert = () =>
         const audioData = fileDecoded.channelData[0]
         const floatArray = new Float32Array(audioData)
 
+        console.log("Vídeo convertido com sucesso!")
+
         resolve(floatArray)
         fs.unlinkSync(outputPath)
       })
       .on("error", (error) => {
-        console.loge("Erro ao converter o vídeo.", error)
+        console.log("Erro ao converter o vídeo.", error)
         reject(error)
       })
       .save(outputPath)
